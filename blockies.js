@@ -122,8 +122,5 @@
 	if (typeof module !== "undefined") {
 		module.exports = api;
 	}
-	if (typeof window !== "undefined") {
-		 window.blockies = api;
-	}
 
 })();
