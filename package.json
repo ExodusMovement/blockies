@@ -1,6 +1,6 @@
 {
   "name": "@exodus/ethereum-blockies",
-  "version": "0.1.1-exodus.3",
+  "version": "0.1.2-exodus.0",
   "description": "A tiny library for generating blocky identicons.",
   "main": "blockies.js",
   "scripts": {
