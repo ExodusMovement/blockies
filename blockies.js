@@ -129,20 +129,22 @@
         var row = Math.floor(i / width);
         var col = i % width;
 
-        const rect = `<rect
-											x="${col * opts.scale}"
-											y="${row * opts.scale}"
-											width="${opts.scale}"
-											height="${opts.scale}"
-											fill="${imageData[i] == 1 ? opts.color : opts.spotcolor}"/>\n`;
+        const rect = `
+        <rect
+          x="${col * opts.scale}"
+          y="${row * opts.scale}"
+          width="${opts.scale}"
+          height="${opts.scale}"
+          fill="${imageData[i] == 1 ? opts.color : opts.spotcolor}"/>\n`;
         rects += rect;
       }
     }
 
     const size = opts.scale * opts.size;
-    return `<svg viewBox="0 0 ${size} ${size}">
+    return `
+    <svg viewBox="0 0 ${size} ${size}">
       <rect width="100%" height="100%" fill="${opts.bgcolor}"/>
-			${rects}
+      ${rects}
     </svg>`;
   }
 
