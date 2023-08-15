@@ -64,7 +64,31 @@
   }
 
   function buildOpts(opts) {
-    var newOpts = {};
+    if (opts) {
+      // Sanitize opts
+      let { scale, color, spotcolor, bgcolor, size, seed } = opts;
+      opts = { __proto__: null };
+      if (typeof scale === "number") {
+        opts.scale = scale;
+      }
+      if (typeof size === "number") {
+        opts.size = size;
+      }
+      if (typeof seed === "string") {
+        opts.seed = seed;
+      }
+      if (isColor(color)) {
+        opts.color = color;
+      }
+      if (isColor(spotcolor)) {
+        opts.spotcolor = spotcolor;
+      }
+      if (isColor(bgcolor)) {
+        opts.bgcolor = bgcolor;
+      }
+    }
+
+    var newOpts = { __proto__: null };
 
     newOpts.seed =
       opts.seed || Math.floor(Math.random() * Math.pow(10, 16)).toString(16);
@@ -81,7 +105,7 @@
   }
 
   function renderIcon(opts, canvas) {
-    opts = buildOpts(opts || {});
+    opts = buildOpts(opts || { __proto__: null });
     var imageData = createImageData(opts.size);
     var width = Math.sqrt(imageData.length);
 
@@ -115,8 +139,13 @@
     return canvas;
   }
 
+  function isColor(color) {
+    const hexPattern = /^#(?:[0-9a-fA-F]{3}){1,2}$/;
+    return hexPattern.test(color);
+  }
+
   function createSvg(opts) {
-    opts = buildOpts(opts || {});
+    opts = buildOpts(opts || { __proto__: null });
     var imageData = createImageData(opts.size);
 
     var width = Math.sqrt(imageData.length);
